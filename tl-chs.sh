@@ -346,7 +346,7 @@ cleanAll(){
 }
 
 # 系统版本号
-SYS_VERSION=$(cat /etc/redhat-release | grep -oE "([0-9])\.([0-9])")
+SYS_VERSION=$(cat /etc/redhat-release | grep -oE "([0-9])\.[0-9]+")
 
 # 选择使用的功能
 go=6
@@ -388,7 +388,10 @@ elif [ "$go" = "2" ]; then
     cleanAll
 elif [ "$go" = "3" ]; then
     # supports 8.0 8.1 8.2 8.3 8.4 8.5
-   
+    if [[ $SYS_VERSION < 8.0 ]] || [[ $SYS_VERSION > 8.5 ]]; then
+        echo -e "\033[41m抱歉, CentOS8.x版本目前只支持以下版本: 8.0 8.1 8.2 8.3 8.4 8.5\033[0m"
+        exit;
+    fi
     # 进入安装流程
     Install_8x
     InstallSuccessfully
