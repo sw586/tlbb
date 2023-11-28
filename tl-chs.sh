@@ -346,7 +346,7 @@ cleanAll(){
 }
 
 # 系统版本号
-SYS_VERSION=$(cat /etc/redhat-release | grep -oE "7\.([0-9]+)")
+SYS_VERSION=$(cat /etc/redhat-release | grep -oE "([0-9])\.([0-9])")
 
 # 选择使用的功能
 go=6
@@ -378,8 +378,8 @@ elif [ "$go" = "1" ]; then
     cleanAll
 elif [ "$go" = "2" ]; then
     # supports 7.2 7.3 7.6 7.7 7.8
-    if [[ $SYS_VERSION < 7.2 ]] || [[ $SYS_VERSION > 7.8 ]]; then
-        echo -e "\033[41m抱歉, CentOS7.x版本目前只支持以下版本: 7.2 7.3 7.6 7.7 7.8\033[0m"
+    if [[ $SYS_VERSION < 7.2 ]] || [[ $SYS_VERSION > 7.9 ]]; then
+        echo -e "\033[41m抱歉, CentOS7.x版本目前只支持以下版本: 7.2 7.3 7.6 7.7 7.9\033[0m"
         exit;
     fi
     # 进入安装流程
